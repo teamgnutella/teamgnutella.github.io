@@ -1,5 +1,6 @@
 #word-list {
-	margin: 0;
+	float: left;
+	margin: 20px;
 	padding: 0;
 	width: 210px;
 }
@@ -11,7 +12,7 @@
 	overflow-y: auto;
 	height: 250px;
 }
-ul {
+li {
 	list-style: none;
 	
 }
@@ -21,4 +22,12 @@ ul {
 
 #add {
 	float: right;
+}
+
+#word-search {
+	margin: 20px;
+	float: left;
+	width: 400px;
+	height: 400px;
+	border: solid 1px black;
 }

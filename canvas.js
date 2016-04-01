@@ -13,10 +13,6 @@ function getWords() {
 	return wordArray;
 }
 
-
-
-
-
 function setColor(color) {
 	context.strokeStyle = color;
 	context.fillStyle = color;
@@ -85,3 +81,5 @@ function generateWordSearch() {
 	
 	drawLetters();
 }
+
+generateWordSearch()

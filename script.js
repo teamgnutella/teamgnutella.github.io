@@ -3,13 +3,13 @@ $(document).ready(function(){
 	var setLength = 10;
 	$('#add').click(function(){
 		var word = $('#word').val();
-		$('#word-box').append(
-		'<li class="word">' + word + '</li>'
-		);
-		if(toBig(word)){
+		if(!toBig(word)){
 			wordArray.push(word);
+			$('#word-box').append(
+				'<li class="word">' + word + '</li>'
+			);
 			console.log(wordArray);
-			console.log("Print");
+			console.log("Good Size");
 		}
 		
 	});

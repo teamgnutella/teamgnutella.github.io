@@ -2,7 +2,8 @@ canvas = document.getElementById('canvas');
 context = canvas.getContext("2d");
 
 // OPTIONS
-const letterColor = "000";
+const letterColor = "#222222";
+const partOfWord = "#FF0000"
 const gridColor = '#BB8'; // #STARWARS :)
 const drawGrid = true;
 const drawBorder = true;
@@ -10,7 +11,15 @@ const drawBorder = true;
 document.getElementById("gen").addEventListener('click', generateWordSearch);
 
 function getWords() {
-	return wordArray;
+	var words = [];
+	var wordBox = document.getElementById('word-box').childNodes;
+	
+	for(var i = 1; i < wordBox.length; i++) {
+		var word = wordBox[i].textContent;
+		words.push(word)
+	}	
+	
+	return words;
 }
 
 function setColor(color) {
@@ -41,14 +50,13 @@ function drawGridLines(color) {
 function drawLetter(letter, x, y, color) {
 	letterHeight = 20
 	
-	setColor(color)
-	
 	if(letter.length > 1) {
 		letter = letter[0];
 	}
 	context.font = letterHeight + "px Consolas";
 	context.textAlign = 'center';
 	context.textBaseline = 'middle';
+	setColor(color)
 	context.fillText(letter, x, y);
 }
 
@@ -58,13 +66,25 @@ function drawLetters() {
 	
 	for(y = 0; y < rows; y++) {
 		for(x = 0; x < cols; x++) {
-			letter = wordArray[0][0]
-			drawLetter(letter, (x * cellSize) + cellSize / 2, y * cellSize + cellSize / 2, "#000")
+			letter = grid[x][y]
+			
+			if(letter.isPartOfWord) {
+				color = partOfWord;
+			}
+			else {
+				color = letterColor;
+			}
+			drawLetter(letter.str, (x * cellSize) + cellSize / 2, y * cellSize + cellSize / 2, color)
 		}
 	}
 }
 
 function generateWordSearch() {
+	console.log("generating word search")
+	
+	// Get the word search
+	grid = genSearch(getWords())
+	
 	width = document.getElementById('width').value
 
 	rows = width;
@@ -82,4 +102,4 @@ function generateWordSearch() {
 	drawLetters();
 }
 
-generateWordSearch()
+//generateWordSearch()

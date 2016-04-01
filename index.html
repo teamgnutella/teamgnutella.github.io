@@ -2,21 +2,42 @@
 	<head>
 		<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js"></script>
 		<script src="script.js"></script>
-		<script src="Generator.js"></script>
+		<!-- <script src="Generator.js"></script> -->
 		<link rel="stylesheet" href="style.css">
-		<title>test</title>
+		<title>Word Search Generator</title>
 	</head>
 	<body>
+		<div class="Menu">
+			<div class="menuOption" id="Style">
+				<h2>Style</h2>
+				<p class="1" id="option">Grid <input type="checkbox" class='Grid' id="check"/></p>
+				<p class="2" id="option">Border <input type="checkbox" class='Border' id="check"/></p>
+			</div>
+			<div class="menuOption" id="Fonts">
+				<h2>Fonts</h2>
+				<p class="1" id="option">Arial <input type="checkbox" class='Arial' id="check"/></p>
+				<p class="2" id="option">Helivitica <input type="checkbox" class='Helivitica' id="check"/></p>
+				<p class="3" id="option">Other <input type="checkbox" class='Other' id="check"/></p>
+			</div>
+			<div class="menuOption" id="Translate">
+				<h2>Translate</h2>
+				<p class="1" id="option">Spanish <input type="checkbox" class='Spanish' id="check"/></p>
+				<p class="2" id="option">Italian <input type="checkbox" class='Italian' id="check"/></p>
+				<p class="3" id="option">French <input type="checkbox" class='French' id="check"/></p>
+			</div>
+		</div>
+		
 		<div id="word-list">
 			<div id="word-box">
 			</div>
 			<input id="word" type="text">
 			<input id="add" type="submit" value="+">
 			<input id="gen" type="submit" value="Generate">
+			<input id='width' value=10 type="number" min=1 max=20 step=1>
 		</div>
 		
 		<div id="word-search">
-			<canvas id="canvas" width='400px' height='400px'>
+			<canvas id="canvas" width='401px' height='401px'>
 				Your browser does not support Canvas tags...
 				<br>
 				Sorry!

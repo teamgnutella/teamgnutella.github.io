@@ -11,6 +11,12 @@ function drawLetter(letter, x, y) {
 	context.fillText(letter, x, y);
 }
 
+document.getElementById("add").addEventListener('click', getWords)
+
+function getWords() {
+	console.log(wordArray)
+}
+
 rows = 10
 cols = 10
 

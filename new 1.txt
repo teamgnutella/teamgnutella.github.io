@@ -1,0 +1,6 @@
+</head> 
+	<body>
+		<body style="background:#427695">
+			<h1><span style="color:#ECC321">Welcome!!</h1>
+
+</body>

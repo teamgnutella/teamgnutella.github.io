@@ -1,0 +1,33 @@
+#word-list {
+	float: left;
+	margin: 20px;
+	padding: 0;
+	width: 210px;
+}
+
+#word-box {
+	border: solid black 1px;
+	margin: 0;
+	padding: 0;
+	overflow-y: auto;
+	height: 250px;
+}
+li {
+	list-style: none;
+	
+}
+
+#word {
+}
+
+#add {
+	float: right;
+}
+
+#word-search {
+	margin: 20px;
+	float: left;
+	width: 400px;
+	height: 400px;
+	border: solid 1px black;
+}

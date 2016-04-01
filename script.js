@@ -9,7 +9,6 @@ $(document).ready(function(){
 		if(!toBig(word)){
 			wordArray.push(word);
 			console.log(wordArray);
-			console.print("Good Size");
 		}
 		
 	});

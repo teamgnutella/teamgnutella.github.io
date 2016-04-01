@@ -1,7 +1,5 @@
-// GLOBALS
-var wordArray = [];
-
 $(document).ready(function(){
+	var wordArray = [];
 	var setLength = 10;
 	$('#add').click(function(){
 		var word = $('#word').val();

@@ -1,61 +1,27 @@
-canvas = document.getElementById('canvas')
-c = canvas.getContext("2d")
+canvas = document.getElementById('canvas');
+context = canvas.getContext("2d");
 
-function getMouseCoords(event) {
-    rect = canvas.getBoundingClientRect()
-    x = event.clientX - rect.left
-    y = event.clientY - rect.top
-    return {x:x, y:y}
+function drawLetter(letter, x, y) {
+	if(letter.length > 1) {
+		letter = letter[0]
+	}
+	
+	context.font = "12px Consolas";
+	context.textAlign = 'center'
+	context.fillText(letter, x, y);
 }
 
-function drawMouseLoc(event) {
-    loc = getMouseCoords(event)
-    squareSize = 100;
-    
-    x = Math.floor(loc.x / squareSize)
-    y = Math.floor(loc.y / squareSize)
-    
-    drawGrid()
-    drawSquare(x * squareSize, y * squareSize, squareSize, yellow)
-    
-    console.log(x,y)
+document.getElementById("add").addEventListener('click', getWords)
+
+function getWords() {
+	console.log(wordArray)
 }
 
-canvas.addEventListener('mousemove', drawMouseLoc)
+rows = 10
+cols = 10
 
-blue = '#ABCDEF'
-white = '#FCFCFC'
-yellow = 'rgba(255, 255, 0, 0.75)'
-
-function drawSquare(x, y, w, color) {
-    c.fillStyle = color
-    c.fillRect(x,y,w,w)
+for(y = 0; y < canvas.height / rows; y++) {
+	for(x = 0; x < canvas.width / cols; x++) {
+		drawLetter("0", (x * cols) + 5, (y * rows) + 9)
+	}
 }
-
-function drawGrid() {
-    const squareSize = 100;
-    
-    for(var y=0; y < (canvas.height / squareSize); y++) {
-        for(var x=0; x < (canvas.width / squareSize); x++) {
-            // If an even row
-            if(y % 2 == 0) {
-                if(x % 2 == 0) {
-                    drawSquare(x * squareSize, y * squareSize, squareSize, blue)
-                }
-                else {
-                    drawSquare(x * squareSize, y * squareSize, squareSize, white)
-                }
-            }
-            else {
-                if(x % 2 == 0) {
-                    drawSquare(x * squareSize, y * squareSize, squareSize, white)
-                }
-                else {
-                    drawSquare(x * squareSize, y * squareSize, squareSize, blue)
-                }
-            }
-        }
-    }    
-}
-
-drawGrid()

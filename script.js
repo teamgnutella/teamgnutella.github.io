@@ -1,6 +1,6 @@
 $(document).ready(function(){
 	var wordArray = [];
-	var setLength = 15;
+	var setLength = 10;
 	$('#add').click(function(){
 		var word = $('#word').val();
 		$('#word-box').append(

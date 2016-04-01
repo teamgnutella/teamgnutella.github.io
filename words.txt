@@ -57,7 +57,6 @@ arrive
 as
 ask
 asleep
-ass
 at
 attack
 attempt
@@ -326,7 +325,6 @@ friend
 from
 front
 frown
-fuck
 full
 fun
 funny
@@ -393,7 +391,6 @@ heard
 heart
 heavy
 held
-hell
 hello
 help
 her

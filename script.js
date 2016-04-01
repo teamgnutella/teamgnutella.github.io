@@ -6,7 +6,7 @@ $(document).ready(function(){
 		$('#word-box').append(
 		'<li class="word">' + word + '</li>'
 		);
-		if(toBig(word)){
+		if(!toBig(word)){
 			wordArray.push(word);
 			console.log(wordArray);
 		}

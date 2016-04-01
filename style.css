@@ -1,10 +1,23 @@
-#word-list {
-	float: left;
-	margin: 20px;
+html{
+	background: #f0f5f5;
+	margin: 0;
 	padding: 0;
-	width: 210px;
 }
-
+p, h2{
+	text-decoration: none;
+	font-family: Century Gothic, sans-serif;
+}
+body{
+	margin: 0;
+	padding: 0;
+}
+#word-list {
+	width: 210px;
+	position: absolute;
+	top: 0; bottom: 0;
+	margin: auto;
+	padding: auto;
+}
 #word-box {
 	border: solid black 1px;
 	margin: 0;
@@ -16,18 +29,44 @@ li {
 	list-style: none;
 	
 }
-
-#word {
-}
-
 #add {
 	float: right;
 }
-
 #word-search {
-	margin: 20px;
-	float: left;
 	width: 400px;
 	height: 400px;
-	border: solid 1px black;
+	position: absolute;
+	top: 0; right: 0; bottom: 0; left: 0;
+	margin: auto;
+	padding: auto;
+}
+.menuOption{
+	color: white;
+	width: 33.33%;
+	text-align: center;
+	float: left;
+	z-index: 0;
+	background: #57a7a7;
+}
+.menuOption h2{
+	font-size: small;
+	padding: 10px 0 10px 0;
+	margin: 8px 0 8px 0;
+}
+#option{
+	position: absolute;
+	width: 33.33%;
+	z-index: -1;
+	top: 0;
+	margin: 0;
+	padding: 18px 0 18px 0;
+	color:white;
+	font-weight: bold;
+	background: #334d4d;
+}
+.Menu div:hover{
+	cursor: pointer;
+}
+#check{
+	margin: 0;
 }

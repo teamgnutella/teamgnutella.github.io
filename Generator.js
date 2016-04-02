@@ -23,7 +23,7 @@ function genSearch(wordList) {
 				if (wordList.length > 0 && Math.random() < 0.3) {
 					
 					var placement = Math.random();
-					if (placement < 0.333) {
+					if (placement < 0.167) {
 						
 						//Place word horizontally if there's room
 						if (isRoom(list, i, j, wordList[0], "h")) {
@@ -33,7 +33,7 @@ function genSearch(wordList) {
 							}
 						}
 						
-					} else if (placement < 0.667) {
+					} else if (placement < 0.333) {
 						//Place word vertically if there's room
 						if (isRoom(list, i, j, wordList[0], "v")) {
 							var word = wordList.shift();
@@ -41,33 +41,42 @@ function genSearch(wordList) {
 								list[k][j] = new Cell(word.charAt(posInWord), true);
 							}
 						}
-					} else {
+					} else if (placement < 0.5) {
 						//Place word diagonally
-						var direction = Math.random();
-						if (direction < 0.25) {
-							//Up and to the right
+						//Up and to the right
 							
-							if (isRoom(list, i, j, wordList[0], "ur")) {
-								var word = wordList.shift();
-								for (var posInWord = 0, row = i, column = j;
-								row >= 0 && column < list[row].length && posInWord < word.length;
-								posInWord++, row--, column++) {
-									list[row][column] = new Cell(word.charAt(posInWord), true);
-								}
+						if (isRoom(list, i, j, wordList[0], "ur")) {
+							var word = wordList.shift();
+							for (var posInWord = 0, row = i, column = j;
+							row >= 0 && column < list[row].length && posInWord < word.length;
+							posInWord++, row--, column++) {
+								list[row][column] = new Cell(word.charAt(posInWord), true);
 							}
-						} else if (direction < 0.5) {
-							//Up and to the left
-						} else if (direction < 0.75) {
-							//Down and to the left
-						} else {
-							//Down and to the right
-							if (isRoom(list, i, j, wordList[0], "dr")) {
+						}
+					} else if (placement < 0.667) {
+						//Up and to the left
+						if (isRoom(list, i, j, wordList[0], "ul")) {
+							var word = wordList.shift();
+							for (var posInWord = 0, row = i, column = j; posInWord < word.length; posInWord++, row--, column--) {
+								list[row][column] = new Cell(word.charAt(posInWord), true);
+							}
+						}
+					} else if (placement < 0.833) {
+						//Down and to the left
+						if (isRoom(list, i, j, wordList[0], "dl")) {
 								var word = wordList.shift();
-								for (var posInWord = 0, row = i, column = j;
-								posInWord < word.length && row < list.length && column < list[i].length;
-								posInWord++, row++, column++) {
+								for (var posInWord = 0, row = i, column = j; posInWord < word.length; posInWord++, row++, column--) {
 									list[row][column] = new Cell(word.charAt(posInWord), true);
 								}
+						}
+					} else {
+						//Down and to the right
+						if (isRoom(list, i, j, wordList[0], "dr")) {
+							var word = wordList.shift();
+							for (var posInWord = 0, row = i, column = j;
+							posInWord < word.length && row < list.length && column < list[i].length;
+							posInWord++, row++, column++) {
+								list[row][column] = new Cell(word.charAt(posInWord), true);
 							}
 						}
 					}
@@ -92,68 +101,93 @@ function alpha() {
 		}
 	}
 }
-function isRoom(list, ind1, ind2, wordToPlace, str) {
-	if (str === "h") {
+function isRoom(list, ind1, ind2, wordToPlace, dir) {
+	if (dir == "h") {
+		
 		if (wordToPlace.length > list[ind1].length - ind2) {
 			return false;
 		} else {
-			for (var posInWord = 0; j < list[ind1].length && posInWord < wordToPlace.length; ind2++, posInWord++) {
-				if (list[ind1][ind2].isPartOfWord && !(list[ind1][ind2].str.toLowerCase() === wordToPlace.charAt(posInWord).toLowerCase())) {
+			for (var posInWord = 0; posInWord < wordToPlace.length; ind2++, posInWord++) {
+				if (list[ind1][ind2].isPartOfWord && list[ind1][ind2].str.toLowerCase() != wordToPlace.toLowerCase().charAt(posInWord)) {
 					return false;
+				} else {
+					continue;
 				}
 			}
+			return true;
 		}
 		return true;
-	} else if (str === "v") {
+		
+	} else if (dir == "v") {
 		if (wordToPlace.length > list.length - ind1) {
 			return false;
 		} else {
-			for (var posInWord = 0, i = ind1; posInWord < word.length && i < list.length; posInWord++, i++) {
-				if (list[i][ind2].isPartOfWord && !(list[i][ind2].str.toLowerCase() === wordToPlace.charAt(posInWord).toLowerCase())) {
+			for (var posInWord = 0, i = ind1; posInWord < word.length; posInWord++, i++) {
+				if (list[i][ind2].isPartOfWord && list[i][ind2].str.toLowerCase() != wordToPlace.toLowerCase().charAt(posInWord)) {
 					return false;
+				} else {
+					continue;
 				}
 			}
+			return true;
 		}
 		return true;
-	} else if (str === "ur") {
+	} else if (dir == "ur") {
 		if (wordToPlace.length > ind1 + 1 || wordToPlace.length > list[ind1].length - ind2) {
 			return false;
 		} else {
 			for (var posInWord = 0, i = ind1, j = ind2;
-			posInWord < wordToPlace.length && i >= 0 && j < list[i].length;
+			posInWord < wordToPlace.length;
 			i--, j++) {
-				if (list[i][j].isPartOfWord && !(list[i][j].str.toLowerCase() === wordToPlace.charAt(posInWord))) {
+				if (list[i][j].isPartOfWord && list[i][j].str.toLowerCase() != wordToPlace.toLowerCase().charAt(posInWord)) {
 					return false;
+				} else {
+					continue;
 				}
 			}
+			return true;
 		}
 		return true;
-	} else if (str === "ul") {
+	} else if (dir == "ul") {
 		if (wordToPlace.length > ind1 + 1 || wordToPlace.length > ind2 + 1) {
 			return false;
 		} else {
-			for (var i = ind1, j = ind2; i >= 0 && j >= 0; i--, j--) {
-				if (list[i][j].isPartOfWord) {
+			for (var posInWord = 0, i = ind1, j = ind2; posInWord < wordToPlace.length; posInWord++, i--, j--) {
+				if (list[i][j].isPartOfWord && list[i][j].str.toLowerCase() != wordToPlace.toLowerCase().charAt(posInWord)) {
+					return false;
+				} else {
+					continue;
+				}
+			}
+			return true;
+		}
+		return true;
+	} else if (dir == "dl") {
+		if (wordToPlace.length > list.length - ind1 || wordToPlace.length > ind2 + 1) {
+			return false;
+		} else {
+			for (var posInWord = 0, i = ind1, j = ind2; posInWord < wordToPlace.length; posInWord++, i++, j--) {
+				if (list[i][j].isPartOfWord && list[i][j].str.toLowerCase() != wordToPlace.toLowerCase().charAt(posInWord)) {
 					return false;
 				}
 			}
+			return true;
 		}
 		return true;
-	} else if (str === "dl") {
-		if (wordToPlace.length > list.length - ind1 || wordToPlace.length > ind2 + 1) {
-			return false;
-		}
-	} else if (str === "dr") {
+	} else if (dir == "dr") {
 		if (wordToPlace.length > list.length - ind1 || wordToPlace.length > list[ind1].length - ind2) {
 			return false;
 		} else {
 			for (var posInWord = 0, i = ind1, j = ind2;
-			posInWord < wordToPlace.length && i < list.length && j < list[i].length;
+			posInWord < wordToPlace.length;
 			posInWord++, i++, j++) {
-				if (list[i][j].isPartOfWord && !(list[i][j].str.toLowerCase() === wordToPlace.charAt(posInWord))) {
+				if (list[i][j].isPartOfWord && list[i][j].str.toLowerCase() != wordToPlace.toLowerCase().charAt(posInWord)) {
 					return false;
+				} else {
+					continue;
 				}
 			}
+			return true;
 		}
 		return true;
 	}
@@ -233,12 +267,4 @@ function isRoom(list, ind1, ind2, wordToPlace, str) {
 		return true;
 	}
 }
-//var filRea;
-//if (window.XMLHttpRequest) {
-//	filRea = new XMLHttpRequest();
-//} else {
-//	filRea = new ActiveXObject("Microsoft.XMLHTTP");
-//}
-//filRea.open("GET", "http://localhost/words.txt", true);
-//filRea.send();
 genSearch(["Red", "Blue", "Green"]);

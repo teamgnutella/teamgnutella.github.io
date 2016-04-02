@@ -8,7 +8,7 @@ const gridColor = '#BB8'; // #STARWARS :)
 const drawGrid = false;
 const drawBorder = false;
 const font = "Consolas"; // Arial, Consolas, Tahoma
-const letterCase = "lower";
+const letterCase = "upper";
 
 document.getElementById("gen").addEventListener('click', generateWordSearch);
 canvas.addEventListener('mousemove', hoverTile);

@@ -25,14 +25,19 @@ body{
 	overflow-y: auto;
 	height: 250px;
 }
+#word-box div{
+	border-bottom: solid 1px black;
+	
+}
+#word-box div::before {
+	color: #ABCDEF;
+	font-size: 11px;
+	content: "remove";
+}
 li {
 	list-style: none;
 	padding-left: 20px;
 	display: inline-block;
-}
-.wordboxitem::before {
-	font-size: 10px;
-	content: "Remove";
 }
 #add {
 	float: right;

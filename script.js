@@ -3,7 +3,7 @@ $(document).ready(function(){
 		if(word.match(/^[a-zA-Z]+$/)) {
 			if(!toBig(word) && word != "") {
 				$('#word-box').append(
-					'<div class="wordboxitem""><li>' + word + '</li></div>'
+					'<div>' + word + '</div>'
 				);				
 				// Now clear the field
 				document.getElementById('word').value = "";
@@ -39,7 +39,7 @@ $(document).ready(function(){
 	$(".menuOption").hover(
 		function(){
 			id = $(this).attr("id");
-			name = "#" + id + " #option"
+			name = "#" + id + " #option";
 			$(this).animate({
 				'width' : 500
 			},{
@@ -60,7 +60,7 @@ $(document).ready(function(){
 		},
 		function(){
 			id = $(this).attr("id");
-			name = "#" + id + " #option"
+			name = "#" + id + " #option";
 			$(name).css("z-index", -1);
 			$(name).animate({
 				'margin-left' : 0
@@ -80,6 +80,7 @@ $(document).ready(function(){
 	var clicked = false;
 	$("#slideMenu").click(function(){
 		if(!clicked){
+			$(this).text("<");
 			$(".Menu").animate({
 				"left": 0
 			},{
@@ -95,6 +96,7 @@ $(document).ready(function(){
 			clicked = true;
 		}
 		else{
+			$(this).text(">");
 			for(var i = 1; i < $(".Menu").children().size(); i++){	
 				var cool = ".opt" + i;
 				$(cool).animate({
@@ -123,7 +125,7 @@ $(document).ready(function(){
 	textField = document.getElementById('word')
 	textField.addEventListener('keyup', addWordEnter)
 	
-	$( "#word-box" ).on("click", 'div', function() {
+	$("#word-box").on("click", 'div', function() {
 		$(this).remove();
 	});
 	

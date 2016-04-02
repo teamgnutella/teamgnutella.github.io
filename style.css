@@ -8,6 +8,10 @@ html{
 p, h2{
 	text-decoration: none;
 }
+a{
+	text-decoration: none;
+	color: white;
+}
 body{
 	margin: 0;
 	padding: 0;
@@ -17,7 +21,7 @@ body{
 	width: 100%;
 	position: absolute;
 	margin: auto;
-	right: 0; bottom: 10px; left: 0;
+	right: 0; bottom: 0; left: 0;
 	z-index: 0;
 }
 #word-box {
@@ -26,34 +30,34 @@ body{
 	padding: 0;
 	overflow-y: auto;
 }
-#word-box div{
-	border-bottom: solid 1px black;
-	
-}
-#word-box div::before {
-	font-size: 11px;
-	content: "remove";
-}
-li {
-	list-style: none;
+#word-box div{ 
 	padding-left: 20px;
-	display: inline-block;
+}
+#word-box div:hover {
+	background-color: grey;
 }
 #word {
-	height: 20px;
+	border: none;
+	border-right: 1px #737373 solid;
+	height: 26px;
 	float: left;
-	border: 1px lightgrey solid;
 }
 #add {
-	height: 18px;
+	font-size; large;
+	height: 26px;
 	background-color: white;
 	margin-left: 0px;
-	border: 1px lightgrey solid;
-	border-left-style: none;
 	text-align: center;
 }
 #gen {
+	font-size: large;
 	width: 100%;
+	height: 62px;
+	color: white;
+	background-color: #50d100;
+	border: none;
+	text-align: center;
+	margin: 0;
 }
 #word-search {
 	z-index: 0;
@@ -129,4 +133,12 @@ li {
 	margin: auto;
 	top: 0; right: 0; bottom: 0;
 	position:absolute;
+}
+#width{
+	background: transparent;
+	border: none;
+	color: white;
+	text-align:center;
+	font-weight: bold;
+	font-size: large;
 }

@@ -30,8 +30,10 @@
 			<div class="menuOption" id="Translate">
 				<h2 style="background: #008fb3">Download<img src="icons/download arrow.png" class="icon"/></h2>
 				<div id="option" class="opt3">
-					<p class="1" style="background: #007a99">Save</p>
-					<p class="2" style="background: #005266">Print</p>
+					<a id="downLink" onclick="$('#downLink').attr('href', canvas.toDataURL());" download="Crossword.png" href="#" target="_blank">
+						<p class="1" style="background: #007a99" id="saveButton">Save</p>
+					</a>
+					<p class="2" style="background: #005266" id="printButton">Print</p>
 				</div>
 			</div>
 		

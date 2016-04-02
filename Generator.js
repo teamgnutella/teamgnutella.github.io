@@ -30,7 +30,7 @@ function genSearch(wordList) {
 				
 				for (var j = 0; j < list[i].length; j++) {
 					
-					if (wordList.length > 0 && Math.random() < 0.3) {
+					if (wordList.length > 0 && Math.random() > 0.667) {
 						
 						var placement = Math.random();
 						if (placement < 0.167) {
@@ -152,7 +152,7 @@ function isRoom(list, ind1, ind2, wordToPlace, dir) {
 		if (wordToPlace.length > ind1 + 1 || wordToPlace.length > list[ind1].length - ind2) {
 			return false;
 		} else {
-			for (var posInWord = 0;
+			for (var posInWord = 0, ind1, ind2;
 			posInWord < wordToPlace.length;
 			ind1--, ind2++, posInWord++) {
 				//console.log(list[ind1][ind2].str + " == " + wordToPlace.charAt(posInWord) + " evaluates to " + (list[ind1][ind2].str == wordToPlace.charAt(posInWord)));

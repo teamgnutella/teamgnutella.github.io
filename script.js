@@ -30,7 +30,6 @@ $(document).ready(function(){
 	
 	var id = "";
 	var clickedFunc = false;
-	var top = "";
 	
 	$("#Style #option").css("top", menu);
 	$("#Fonts #option").css("top", menu*2);
@@ -51,17 +50,18 @@ $(document).ready(function(){
 			},{
 				queue: false,
 				duration: 250
+			},{
+				complete: welp()
 			});
-			setTimeout(function(){
-				$(name).css("z-index", 0);
-			}, 250);
-			
+			function welp(){
+				$(name).delay(250).css("z-index", "0");
+			}
 			clickedFunc = true;
 		},
 		function(){
 			id = $(this).attr("id");
 			name = "#" + id + " #option";
-			$(name).css("z-index", -1);
+			$(name).css("z-index", "-1");
 			$(name).animate({
 				'margin-left' : 0
 			},{
@@ -80,7 +80,7 @@ $(document).ready(function(){
 	var clicked = false;
 	$("#slideMenu").click(function(){
 		if(!clicked){
-			$(this).text("<");
+			$(this).text("< GNUtella");
 			$(".Menu").animate({
 				"left": 0
 			},{
@@ -96,16 +96,7 @@ $(document).ready(function(){
 			clicked = true;
 		}
 		else{
-			$(this).text(">");
-			for(var i = 1; i < $(".Menu").children().size(); i++){	
-				var cool = ".opt" + i;
-				$(cool).animate({
-					"margin-left": 0
-				},{
-					queue: false,
-					duration: 250
-				});
-			}
+			$(this).text("> GNUtella");
 			$(".Menu").animate({
 				"left": -250
 			},{
@@ -124,6 +115,9 @@ $(document).ready(function(){
 	});
 	textField = document.getElementById('word')
 	textField.addEventListener('keyup', addWordEnter)
+	textField.addEventListener('click', function() {
+		textField.value = "";
+	});
 	
 	$("#word-box").on("click", 'div', function() {
 		$(this).remove();

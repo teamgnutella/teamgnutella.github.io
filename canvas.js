@@ -5,9 +5,9 @@ context = canvas.getContext("2d");
 const letterColor = "#222222";
 const partOfWord = "#FF0000"
 const gridColor = '#BB8'; // #STARWARS :)
-const drawGrid = true;
-const drawBorder = true;
-const font = "Tahoma"; // Arial, Consolas, Tahoma
+const drawGrid = false;
+const drawBorder = false;
+const font = "Consolas"; // Arial, Consolas, Tahoma
 
 document.getElementById("gen").addEventListener('click', generateWordSearch);
 canvas.addEventListener('mousemove', hoverTile);

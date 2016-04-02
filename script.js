@@ -57,19 +57,28 @@ $(document).ready(function(){
 	textField = document.getElementById('word')
 	textField.addEventListener('keyup', addWordToList)
 	
+	function deleteListElement(event) {
+		console.log(event.target)
+		$(event.target).remove();
+	}
+	
 	function addWordToList(event) {
-			if(event.keyCode == 13){
-				var word = $('#word').val();
-				if(!toBig(word)){
-					wordArray.push(word);
-					$('#word-box').append(
-						'<li class="word">' + word + '</li>'
-					);
-					
-					// Now clear the field
-					document.getElementById('word').value = "";
-					
-				}
+		if(event.keyCode == 13){
+			var word = $('#word').val();
+			if(!toBig(word)){
+				wordArray.push(word);
+				idName = "list" + wordArray.length
+				$('#word-box').append(
+					'<div class="wordboxitem" id="' + idName + '">' + '<li>' + word + '</li></div>'
+				);
+				
+				// Add an event handler
+				document.getElementById(idName).addEventListener('click', deleteListElement)
+				
+				// Now clear the field
+				document.getElementById('word').value = "";
+				
 			}
 		}
+	}
 });

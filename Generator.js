@@ -125,13 +125,11 @@ function isRoom(list, ind1, ind2, wordToPlace, dir) {
 			return false;
 		} else {
 			for (var posInWord = 0; posInWord < wordToPlace.length; ind2++, posInWord++) {
+				//console.log(list[ind1][ind2].str + " == " + wordToPlace.charAt(posInWord) + " evaluates to " + (list[ind1][ind2].str == wordToPlace.charAt(posInWord)));
 				if (list[ind1][ind2].isPartOfWord && list[ind1][ind2].str.toLowerCase() != wordToPlace.toLowerCase().charAt(posInWord)) {
 					return false;
-				} else {
-					continue;
 				}
 			}
-			return true;
 		}
 		return true;
 		
@@ -139,8 +137,9 @@ function isRoom(list, ind1, ind2, wordToPlace, dir) {
 		if (wordToPlace.length > list.length - ind1) {
 			return false;
 		} else {
-			for (var posInWord = 0, i = ind1; posInWord < wordToPlace.length; posInWord++, i++) {
-				if (list[i][ind2].isPartOfWord && list[i][ind2].str.toLowerCase() != wordToPlace.toLowerCase().charAt(posInWord)) {
+			for (var posInWord = 0; posInWord < wordToPlace.length; posInWord++, ind1++) {
+				//console.log(list[ind1][ind2].str + " == " + wordToPlace.charAt(posInWord) + " evaluates to " + (list[ind1][ind2].str == wordToPlace.charAt(posInWord)));
+				if (list[ind1][ind2].isPartOfWord && list[ind1][ind2].str.toLowerCase() != wordToPlace.toLowerCase().charAt(posInWord)) {
 					return false;
 				} else {
 					continue;
@@ -153,10 +152,11 @@ function isRoom(list, ind1, ind2, wordToPlace, dir) {
 		if (wordToPlace.length > ind1 + 1 || wordToPlace.length > list[ind1].length - ind2) {
 			return false;
 		} else {
-			for (var posInWord = 0, i = ind1, j = ind2;
+			for (var posInWord = 0;
 			posInWord < wordToPlace.length;
-			i--, j++) {
-				if (list[i][j].isPartOfWord && list[i][j].str.toLowerCase() != wordToPlace.toLowerCase().charAt(posInWord)) {
+			ind1--, ind2++, posInWord++) {
+				//console.log(list[ind1][ind2].str + " == " + wordToPlace.charAt(posInWord) + " evaluates to " + (list[ind1][ind2].str == wordToPlace.charAt(posInWord)));
+				if (list[ind1][ind2].isPartOfWord && list[ind1][ind2].str.toLowerCase() != wordToPlace.toLowerCase().charAt(posInWord)) {
 					return false;
 				} else {
 					continue;
@@ -169,8 +169,9 @@ function isRoom(list, ind1, ind2, wordToPlace, dir) {
 		if (wordToPlace.length > ind1 + 1 || wordToPlace.length > ind2 + 1) {
 			return false;
 		} else {
-			for (var posInWord = 0, i = ind1, j = ind2; posInWord < wordToPlace.length; posInWord++, i--, j--) {
-				if (list[i][j].isPartOfWord && list[i][j].str.toLowerCase() != wordToPlace.toLowerCase().charAt(posInWord)) {
+			for (var posInWord = 0; posInWord < wordToPlace.length; posInWord++, ind1--, ind2--) {
+				//console.log(list[ind1][ind2].str + " == " + wordToPlace.charAt(posInWord) + " evaluates to " + (list[ind1][ind2].str == wordToPlace.charAt(posInWord)));
+				if (list[ind1][ind2].isPartOfWord && list[ind1][ind2].str.toLowerCase() != wordToPlace.toLowerCase().charAt(posInWord)) {
 					return false;
 				} else {
 					continue;
@@ -183,8 +184,9 @@ function isRoom(list, ind1, ind2, wordToPlace, dir) {
 		if (wordToPlace.length > list.length - ind1 || wordToPlace.length > ind2 + 1) {
 			return false;
 		} else {
-			for (var posInWord = 0, i = ind1, j = ind2; posInWord < wordToPlace.length; posInWord++, i++, j--) {
-				if (list[i][j].isPartOfWord && list[i][j].str.toLowerCase() != wordToPlace.toLowerCase().charAt(posInWord)) {
+			for (var posInWord = 0; posInWord < wordToPlace.length; posInWord++, ind1++, ind2--) {
+				//console.log(list[ind1][ind2].str + " == " + wordToPlace.charAt(posInWord) + " evaluates to " + (list[ind1][ind2].str == wordToPlace.charAt(posInWord)));
+				if (list[ind1][ind2].isPartOfWord && list[ind1][ind2].str.toLowerCase() != wordToPlace.toLowerCase().charAt(posInWord)) {
 					return false;
 				}
 			}
@@ -195,10 +197,11 @@ function isRoom(list, ind1, ind2, wordToPlace, dir) {
 		if (wordToPlace.length > list.length - ind1 || wordToPlace.length > list[ind1].length - ind2) {
 			return false;
 		} else {
-			for (var posInWord = 0, i = ind1, j = ind2;
+			for (var posInWord = 0;
 			posInWord < wordToPlace.length;
-			posInWord++, i++, j++) {
-				if (list[i][j].isPartOfWord && list[i][j].str.toLowerCase() != wordToPlace.toLowerCase().charAt(posInWord)) {
+			posInWord++, ind1++, ind2++) {
+				//console.log(list[ind1][ind2].str + " == " + wordToPlace.charAt(posInWord) + " evaluates to " + (list[ind1][ind2].str == wordToPlace.charAt(posInWord)));
+				if (list[ind1][ind2].isPartOfWord && list[ind1][ind2].str.toLowerCase() != wordToPlace.toLowerCase().charAt(posInWord)) {
 					return false;
 				} else {
 					continue;
@@ -208,80 +211,5 @@ function isRoom(list, ind1, ind2, wordToPlace, dir) {
 		}
 		return true;
 	}
-	switch (str) {
-	case "h":
-		
-		if (wordToPlace.length > list[ind1].length - ind2) {
-			return false;
-		} else {
-			for (var posInWord = 0; j < list[ind1].length && posInWord < wordToPlace.length; ind2++, posInWord++) {
-				if (list[ind1][ind2].isPartOfWord && !(list[ind1][ind2].str.toLowerCase() === wordToPlace.charAt(posInWord).toLowerCase())) {
-					return false;
-				}
-			}
-		}
-		return true;
-		
-	case "v":
-		
-		if (wordToPlace.length > list.length - ind1) {
-			return false;
-		} else {
-			for (var posInWord = 0, i = ind1; posInWord < word.length && i < list.length; posInWord++, i++) {
-				if (list[i][ind2].isPartOfWord && !(list[i][ind2].str.toLowerCase() === wordToPlace.charAt(posInWord).toLowerCase())) {
-					return false;
-				}
-			}
-		}
-		return true;
-		
-	case "ur":
-		
-		if (wordToPlace.length > ind1 + 1 || wordToPlace.length > list[ind1].length - ind2) {
-			return false;
-		} else {
-			for (var posInWord = 0, i = ind1, j = ind2;
-			posInWord < wordToPlace.length && i >= 0 && j < list[i].length;
-			i--, j++) {
-				if (list[i][j].isPartOfWord && !(list[i][j].str.toLowerCase() === wordToPlace.charAt(posInWord))) {
-					return false;
-				}
-			}
-		}
-		return true;
-		
-	case "ul":
-	
-		if (wordToPlace.length > ind1 + 1 || wordToPlace.length > ind2 + 1) {
-			return false;
-		} else {
-			for (var i = ind1, j = ind2; i >= 0 && j >= 0; i--, j--) {
-				if (list[i][j].isPartOfWord) {
-					return false;
-				}
-			}
-		}
-		return true;
-		
-	case "dl":
-	
-		if (wordToPlace.length > list.length - ind1 || wordToPlace.length > ind2 + 1) {
-			return false;
-		}
-			
-	case "dr":
-		if (wordToPlace.length > list.length - ind1 || wordToPlace.length > list[ind1].length - ind2) {
-			return false;
-		} else {
-			for (var posInWord = 0, i = ind1, j = ind2;
-			posInWord < wordToPlace.length && i < list.length && j < list[i].length;
-			posInWord++, i++, j++) {
-				if (list[i][j].isPartOfWord && !(list[i][j].str.toLowerCase() === wordToPlace.charAt(posInWord))) {
-					return false;
-				}
-			}
-		}
-		return true;
-	}
 }
-genSearch(["Red", "Blue", "Green"]);
+//genSearch(["Red", "Blue", "Green"]);

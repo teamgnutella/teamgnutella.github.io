@@ -1,3 +1,4 @@
+//var sideLength = 10;
 function Cell(str, bool) {
 	this.str = str;
 	this.isPartOfWord = bool;
@@ -59,7 +60,7 @@ function genSearch(wordList) {
 								for (var posInWord = 0, row = i, column = j;
 								row >= 0 && column < wordList[row].length && posInWord < word.length;
 								row--, column++) {
-									list[r][i] = new Cell(word.charAt(posInWord), true);
+									list[row][column] = new Cell(word.charAt(posInWord), true);
 								}
 							}
 						} else if (direction < 0.5) {
@@ -82,7 +83,6 @@ function genSearch(wordList) {
 			}
 		}
 	}
-	console.log(list);
 	return list;
 	/*for (var i = 0; i < list.length; i++) {
 		for (var j = 0; j < list.length; j++) {
@@ -107,8 +107,8 @@ function isRoom(list, ind1, ind2, wordToPlace, str) {
 		if (wordToPlace.length > list[ind1].length - ind2) {
 			return false;
 		} else {
-			for (var j = ind2; j < list[ind1].length; j++) {
-				if (list[ind1][j].isPartOfWord) {
+			for (var posInWord = 0, j = ind2; j < list[ind1].length && posInWord < wordToPlace.length; j++, posInWord++) {
+				if (list[ind1][j].isPartOfWord && !(list[ind1][j].str === wordToPlace.charAt(posInWord))) {
 					return false;
 				}
 			}
@@ -157,14 +157,16 @@ function isRoom(list, ind1, ind2, wordToPlace, str) {
 	case "dl":
 	
 		if (wordToPlace.length > list.length - ind1 || wordToPlace.length > ind2 + 1) {
-			
+			return false;
 		}
 			
 	case "dr":
 		if (wordToPlace.length > list.length - ind1 || wordToPlace.length > list[ind1].length - ind2) {
 			return false;
 		} else {
-			for (var i = ind1, j = ind2; i < list.length && j < list[i].length; i++, j++) {
+			for (var letterNumber = 0, i = ind1, j = ind2;
+			letterNumber < wordToPlace.length, i < list.length && j < list[i].length;
+			letterNumber++, i++, j++) {
 				if (list[i][j].isPartOfWord) {
 					return false;
 				}

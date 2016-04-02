@@ -7,18 +7,23 @@ const partOfWord = "#FF0000"
 const gridColor = '#BB8'; // #STARWARS :)
 const drawGrid = true;
 const drawBorder = true;
+const font = "Tahoma"; // Arial, Consolas, Tahoma
 
 document.getElementById("gen").addEventListener('click', generateWordSearch);
+canvas.addEventListener('mousemove', hoverTile);
 
+// Parses the word box for the input words
 function getWords() {
 	var words = [];
 	var wordBox = document.getElementById('word-box').childNodes;
 	
 	for(var i = 1; i < wordBox.length; i++) {
 		var word = wordBox[i].textContent;
-		words.push(word)
-	}	
-	
+		if(word !== "") {
+			words.push(word)
+		}
+		
+	}
 	return words;
 }
 
@@ -53,7 +58,7 @@ function drawLetter(letter, x, y, color) {
 	if(letter.length > 1) {
 		letter = letter[0];
 	}
-	context.font = letterHeight + "px Consolas";
+	context.font = letterHeight + "px " + font;
 	context.textAlign = 'center';
 	context.textBaseline = 'middle';
 	setColor(color)
@@ -79,8 +84,30 @@ function drawLetters() {
 	}
 }
 
+function hoverTile(event) {
+	rect = canvas.getBoundingClientRect()
+    x = Math.floor((event.clientX - rect.left) / cellSize)
+    y = Math.floor((event.clientY - rect.top) / cellSize)
+	
+	draw(x, y);
+}
+
+// Draws everything
+function draw(x, y) {
+	// Clear the canvas
+	context.clearRect(0, 0, canvas.width, canvas.height);
+	
+	// Draw grid lines if necessary
+	if(drawGrid) { drawGridLines(gridColor) }
+	if(drawBorder) { drawBorderLines(gridColor) }
+	
+	drawLetters();
+	context.fillStyle = 'rgba(10, 10, 10, 0.1)';
+	context.fillRect(x * cellSize, y * cellSize, cellSize, cellSize)
+}
+
 function generateWordSearch() {
-	console.log("generating word search")
+	console.log("Generating Word Search")
 	
 	// Get the word search
 	grid = genSearch(getWords())
@@ -92,14 +119,7 @@ function generateWordSearch() {
 	
 	cellSize = canvas.width / rows;
 	
-	// Clear the canvas
-	context.clearRect(0, 0, canvas.width, canvas.height);
-	
-	// Draw grid if necessary
-	if(drawGrid) { drawGridLines(gridColor) }
-	if(drawBorder) { drawBorderLines(gridColor) }
-	
-	drawLetters();
+	draw();
 }
 
-//generateWordSearch()
+generateWordSearch()

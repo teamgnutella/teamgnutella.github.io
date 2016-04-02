@@ -8,6 +8,10 @@ html{
 p, h2{
 	text-decoration: none;
 }
+a{
+	text-decoration: none;
+	color: white;
+}
 body{
 	margin: 0;
 	padding: 0;
@@ -76,7 +80,7 @@ body{
 	text-align: center;
 	z-index: -10;
 }
-#slideMenu:hover {
+#slideMenu:hover{
 	cursor: pointer;
 }
 .Menu{
@@ -129,4 +133,12 @@ body{
 	margin: auto;
 	top: 0; right: 0; bottom: 0;
 	position:absolute;
+}
+#width{
+	background: transparent;
+	border: none;
+	color: white;
+	text-align:center;
+	font-weight: bold;
+	font-size: large;
 }

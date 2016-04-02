@@ -151,7 +151,7 @@ $(document).ready(function(){
 		
 		code += ";" + width
 		
-		url = "file:///C:/Users/nzcra_000/Documents/teamgnutella/GitHub/teamgnutella.github.io/solve/index.html?" + code + ";" + getWords()
+		url = window.location.href + "share/?" + code + ";" + getWordsInSearch()
 		console.log(url)
 		window.location.href = url
 	});

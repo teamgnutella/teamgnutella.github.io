@@ -72,7 +72,7 @@ function genSearch(wordList) {
 							if (isRoom(list, i, j, wordList[0], "dr")) {
 								var word = wordList.shift();
 								for (var posInWord = 0, row = i, column = j;
-								posInWord < word.length, row < list.length, column < list[i].length;
+								posInWord < word.length && row < list.length && column < list[i].length;
 								posInWord++, row++, column++) {
 									list[row][column] = new Cell(word.charAt(posInWord), true);
 								}
@@ -120,8 +120,8 @@ function isRoom(list, ind1, ind2, wordToPlace, str) {
 		if (wordToPlace.length > list.length - ind1) {
 			return false;
 		} else {
-			for (var i = ind1; i < list.length; i++) {
-				if (list[i][ind2].isPartOfWord) {
+			for (var posInWord = 0, i = ind1; posInWord < word.length, i < list.length; posInWord++, i++) {
+				if (list[i][ind2].isPartOfWord && !(list[i][ind2].str === wordToPlace.charAt(posInWord))) {
 					return false;
 				}
 			}
@@ -164,9 +164,9 @@ function isRoom(list, ind1, ind2, wordToPlace, str) {
 		if (wordToPlace.length > list.length - ind1 || wordToPlace.length > list[ind1].length - ind2) {
 			return false;
 		} else {
-			for (var letterNumber = 0, i = ind1, j = ind2;
-			letterNumber < wordToPlace.length, i < list.length && j < list[i].length;
-			letterNumber++, i++, j++) {
+			for (var posInWord = 0, i = ind1, j = ind2;
+			posInWord < wordToPlace.length, i < list.length && j < list[i].length;
+			posInWord++, i++, j++) {
 				if (list[i][j].isPartOfWord) {
 					return false;
 				}

@@ -3,26 +3,24 @@
 		<link rel="stylesheet" href="style.css">
 		<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js"></script>
 		<script src="script.js"></script>
-		
-		
 		<title>Word Search Generator</title>
 	</head>
 	<body>
 		<div id="slideMenu">
-				<p>></p>
+		<p>></p>
 		</div>
 		<div class="Menu">
 			<div class="menuOption" id="Style">
-				<h2 style="background: #e60073">Style</h2>
+				<h2 style="background: #e60073">Style<img src="icons/paintbrush.png" class="icon"/></h2>
 				<div id="option" class="opt1">
 					<p class="1" style="background: #cc0066"><input type="checkbox" id='grid'/> Grid</p>
 					<p class="2" style="background: #b30059"><input type="checkbox" id='border'/> Border</p>
-					<p class="3" style="background: #99004d"><input type="checkbox" id="case"/> Uppercase</p>
+					<p class="3" style="background: #99004d"><input type="checkbox" id="case"/> Case</p>
 					<p class="4" style="background: #800040">Size <input id='width' value=10 type="number" min=1 max=20 step=1/></p>
 				</div>	
 			</div>
 			<div class="menuOption" id="Fonts">
-				<h2 style="background: #ffcc00">Fonts</h2>
+				<h2 style="background: #ffcc00">Fonts<img src="icons/Font.png" class="icon"/></h2>
 				<div id="option" class="opt2">
 					<p class="1" style="background: #ff9900"><input type="radio" id='arial' name="font"/> Arial</p>
 					<p class="2" style="background: #ff6600"><input type="radio" id='consolas' name="font"/> Consolas</p>
@@ -30,21 +28,20 @@
 				</div>
 			</div>
 			<div class="menuOption" id="Translate">
-				<h2 style="background: #008fb3">Translate</h2>
+				<h2 style="background: #008fb3">Download<img src="icons/paintbrush.png" class="icon"/></h2>
 				<div id="option" class="opt3">
-					<p class="1" style="background: #007a99"><input type="checkbox" id='spanish'/> Spanish</p>
-					<p class="2" style="background: #005266"><input type="checkbox" id='italian'/> Italian</p>
-					<p class="3" style="background: #003d4d"><input type="checkbox" id='french'/> French</p>
+					<p class="1" style="background: #007a99">Save</p>
+					<p class="2" style="background: #005266">Print</p>
 				</div>
 			</div>
 		
 		<div id="word-list">
+		<input id="gen" type="submit" value="Generate">
 				<div id="word-box">
 				
 				</div>
-				<input id="word" type="text">
-				<input id="add" type="submit" value="+">
-				<input id="gen" type="submit" value="Generate">
+				<input id="word" type="text"><div id="add">+</div>
+				
 			</div>
 		</div>
 		

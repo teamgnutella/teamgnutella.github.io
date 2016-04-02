@@ -151,7 +151,7 @@ $(document).ready(function(){
 		
 		code += ";" + width
 		
-		url = window.location.href + "share/?" + code + ";" + getWordsInSearch()
+		url = window.location.href + "share/?" + code + ";" + getWords()
 		console.log(url)
 		window.location.href = url
 	});

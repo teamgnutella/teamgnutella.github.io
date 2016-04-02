@@ -8,6 +8,7 @@ const gridColor = '#BB8'; // #STARWARS :)
 const drawGrid = false;
 const drawBorder = false;
 const font = "Consolas"; // Arial, Consolas, Tahoma
+const letterCase = "upper";
 
 document.getElementById("gen").addEventListener('click', generateWordSearch);
 canvas.addEventListener('mousemove', hoverTile);
@@ -79,7 +80,14 @@ function drawLetters() {
 			else {
 				color = letterColor;
 			}
-			drawLetter(letter.str, (x * cellSize) + cellSize / 2, y * cellSize + cellSize / 2, color)
+			if(letterCase == "upper") {
+				l = letter.str.toUpperCase()
+			}
+			else {
+				l = letter.str.toLowerCase()
+			}
+			
+			drawLetter(l, (x * cellSize) + cellSize / 2, y * cellSize + cellSize / 2, color)
 		}
 	}
 }

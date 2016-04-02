@@ -26,7 +26,7 @@ body{
 	padding: 0;
 	overflow-y: auto;
 }
-#word-box div{
+#word-box div{ 
 	padding-left: 20px;
 }
 #word-box div:hover {
@@ -39,6 +39,7 @@ body{
 	float: left;
 }
 #add {
+	font-size; large;
 	height: 26px;
 	background-color: white;
 	margin-left: 0px;

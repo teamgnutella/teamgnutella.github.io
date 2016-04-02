@@ -3,7 +3,7 @@ $(document).ready(function(){
 		if(word.match(/^[a-zA-Z]+$/)) {
 			if(!toBig(word) && word != "") {
 				$('#word-box').append(
-					'<div class="wordboxitem">' + word + '</div>'
+					'<div>' + word + '</div>'
 				);				
 				// Now clear the field
 				document.getElementById('word').value = "";
@@ -123,7 +123,7 @@ $(document).ready(function(){
 	textField = document.getElementById('word')
 	textField.addEventListener('keyup', addWordEnter)
 	
-	$( "#word-box" ).on("click", 'div', function() {
+	$("#word-box").on("click", 'div', function() {
 		$(this).remove();
 	});
 	

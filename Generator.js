@@ -12,71 +12,88 @@ function genSearch(wordList) {
 			list[i][j] = new Cell(alpha(), false);
 		}
 	}
-	
+	var wordListCopy = [];
+	for (var i = 0; i < wordList.length; i++) {
+		wordListCopy[i] = wordList[i];
+	}
 	//Place words from wordList into list
-	while (wordList.length > 0) {
-		
-		for (var i = 0; i < list.length; i++) {
-			
-			for (var j = 0; j < list[i].length; j++) {
+	var numConfigTries = 0;
+	while (wordList.length > 0 && numConfigTries < 4) {
+		numConfigTries++;
+		var loopsWithoutChange = 0;
+		while (wordList.length > 0 && loopsWithoutChange < 5) {
+			if (wordList[0].length > sideLength) {
+				wordList.shift();
+			}
+			loopsWithoutChange++;
+			for (var i = 0; i < list.length; i++) {
 				
-				if (wordList.length > 0 && Math.random() < 0.3) {
+				for (var j = 0; j < list[i].length; j++) {
 					
-					var placement = Math.random();
-					if (placement < 0.167) {
+					if (wordList.length > 0 && Math.random() < 0.3) {
 						
-						//Place word horizontally if there's room
-						if (isRoom(list, i, j, wordList[0], "h")) {
-							var word = wordList.shift();
-							for (var posInWord = 0; j < list[i].length && posInWord < word.length; j++, posInWord++) {
-								list[i][j] = new Cell(word.charAt(posInWord), true);
-							}
-						}
-						
-					} else if (placement < 0.333) {
-						//Place word vertically if there's room
-						if (isRoom(list, i, j, wordList[0], "v")) {
-							var word = wordList.shift();
-							for (var k = i, posInWord = 0; k < list.length && posInWord < word.length; k++, posInWord++) {
-								list[k][j] = new Cell(word.charAt(posInWord), true);
-							}
-						}
-					} else if (placement < 0.5) {
-						//Place word diagonally
-						//Up and to the right
+						var placement = Math.random();
+						if (placement < 0.167) {
 							
-						if (isRoom(list, i, j, wordList[0], "ur")) {
-							var word = wordList.shift();
-							for (var posInWord = 0, row = i, column = j;
-							row >= 0 && column < list[row].length && posInWord < word.length;
-							posInWord++, row--, column++) {
-								list[row][column] = new Cell(word.charAt(posInWord), true);
+							//Place word horizontally if there's room
+							if (isRoom(list, i, j, wordList[0], "h")) {
+								var word = wordList.shift();
+								for (var posInWord = 0; j < list[i].length && posInWord < word.length; j++, posInWord++) {
+									list[i][j] = new Cell(word.charAt(posInWord), true);
+								}
+								loopsWithoutChange--;
 							}
-						}
-					} else if (placement < 0.667) {
-						//Up and to the left
-						if (isRoom(list, i, j, wordList[0], "ul")) {
-							var word = wordList.shift();
-							for (var posInWord = 0, row = i, column = j; posInWord < word.length; posInWord++, row--, column--) {
-								list[row][column] = new Cell(word.charAt(posInWord), true);
+							
+						} else if (placement < 0.333) {
+							//Place word vertically if there's room
+							if (isRoom(list, i, j, wordList[0], "v")) {
+								var word = wordList.shift();
+								for (var k = i, posInWord = 0; k < list.length && posInWord < word.length; k++, posInWord++) {
+									list[k][j] = new Cell(word.charAt(posInWord), true);
+								}
+								loopsWithoutChange--;
 							}
-						}
-					} else if (placement < 0.833) {
-						//Down and to the left
-						if (isRoom(list, i, j, wordList[0], "dl")) {
+						} else if (placement < 0.5) {
+							//Place word diagonally
+							//Up and to the right
+								
+							if (isRoom(list, i, j, wordList[0], "ur")) {
+								var word = wordList.shift();
+								for (var posInWord = 0, row = i, column = j;
+								row >= 0 && column < list[row].length && posInWord < word.length;
+								posInWord++, row--, column++) {
+									list[row][column] = new Cell(word.charAt(posInWord), true);
+								}
+								loopsWithoutChange--;
+							}
+						} else if (placement < 0.667) {
+							//Up and to the left
+							if (isRoom(list, i, j, wordList[0], "ul")) {
+								var word = wordList.shift();
+								for (var posInWord = 0, row = i, column = j; posInWord < word.length; posInWord++, row--, column--) {
+									list[row][column] = new Cell(word.charAt(posInWord), true);
+								}
+								loopsWithoutChange--;
+							}
+						} else if (placement < 0.833) {
+							//Down and to the left
+							if (isRoom(list, i, j, wordList[0], "dl")) {
 								var word = wordList.shift();
 								for (var posInWord = 0, row = i, column = j; posInWord < word.length; posInWord++, row++, column--) {
 									list[row][column] = new Cell(word.charAt(posInWord), true);
 								}
-						}
-					} else {
-						//Down and to the right
-						if (isRoom(list, i, j, wordList[0], "dr")) {
-							var word = wordList.shift();
-							for (var posInWord = 0, row = i, column = j;
-							posInWord < word.length && row < list.length && column < list[i].length;
-							posInWord++, row++, column++) {
-								list[row][column] = new Cell(word.charAt(posInWord), true);
+								loopsWithoutChange--;
+							}
+						} else {
+							//Down and to the right
+							if (isRoom(list, i, j, wordList[0], "dr")) {
+								var word = wordList.shift();
+								for (var posInWord = 0, row = i, column = j;
+								posInWord < word.length && row < list.length && column < list[i].length;
+								posInWord++, row++, column++) {
+									list[row][column] = new Cell(word.charAt(posInWord), true);
+								}
+								loopsWithoutChange--;
 							}
 						}
 					}
@@ -122,7 +139,7 @@ function isRoom(list, ind1, ind2, wordToPlace, dir) {
 		if (wordToPlace.length > list.length - ind1) {
 			return false;
 		} else {
-			for (var posInWord = 0, i = ind1; posInWord < word.length; posInWord++, i++) {
+			for (var posInWord = 0, i = ind1; posInWord < wordToPlace.length; posInWord++, i++) {
 				if (list[i][ind2].isPartOfWord && list[i][ind2].str.toLowerCase() != wordToPlace.toLowerCase().charAt(posInWord)) {
 					return false;
 				} else {

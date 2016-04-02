@@ -89,7 +89,6 @@ body{
 	left: -250px; top: 0;
 	height: 100%;
 	background: #737373;
-	float: left;
 }
 .menuOption{
 	color: white;
@@ -98,14 +97,13 @@ body{
 }
 .menuOption h2{
 	font-size: large;
-	text-align: center;
-	padding: 20px 0 20px 0;
+	top:0;
 	margin: 0;
+	padding: 18px 0 18px 0;
 	position: relative;
 	z-index: 2;
 }
 #option{
-	width: 100%;
 	z-index: -1;
 	top: 0;
 	margin: 0;
@@ -141,4 +139,11 @@ body{
 	text-align:center;
 	font-weight: bold;
 	font-size: large;
+}
+#solve {
+	padding: 10px;
+	background-color: white;
+	margin-top: 25px;
+	margin-right: 25px;
+	float: right;
 }

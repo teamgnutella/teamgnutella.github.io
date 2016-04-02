@@ -1,0 +1,23 @@
+html{
+	background: #f0f5f5;
+	margin: 0;
+	padding: 0;
+	overflow-y: hidden;
+	font-family: Century Gothic, sans-serif;
+}
+p, h2{
+	text-decoration: none;
+}
+a{
+	text-decoration: none;
+	color: white;
+}
+#word-search {
+	z-index: 0;
+	width: 400px;
+	height: 400px;
+	position: absolute;
+	top: 0; right: 0; bottom: 0; left: 0;
+	margin: auto;
+	padding: auto;
+}

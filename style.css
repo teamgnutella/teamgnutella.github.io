@@ -55,6 +55,7 @@ li {
 	
 }
 #word-search {
+	z-index: 0;
 	width: 400px;
 	height: 400px;
 	position: absolute;

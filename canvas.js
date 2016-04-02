@@ -1,14 +1,41 @@
 canvas = document.getElementById('canvas');
 context = canvas.getContext("2d");
 
+var drawGrid = false;
+var drawBorder = false;
+var upperCase = false;
+var width = 10;
+var font = 'consolas';
+
+// Add event listeners to options
+document.getElementById('grid').addEventListener('click', draw)
+document.getElementById('border').addEventListener('click', draw)
+document.getElementById('case').addEventListener('click', draw)
+document.getElementById('width').addEventListener('change', generateWordSearch)
+//document.getElementById('font').addEventListener('change', draw)
+
+// OPTIONS
+function getOptions() {
+	drawGrid = document.getElementById('grid').checked;
+	drawBorder = document.getElementById('border').checked;
+	upperCase = document.getElementById('case').checked;
+	width = document.getElementById('width').value
+	font = getCheckedRadio('font');
+}
+
+function getCheckedRadio(radio) {
+	radioElements = document.getElementsByName(radio);
+	for(i = 0; i < radioElements.length; i++) {
+		if(radioElements[i].checked) {
+			return radioElements[i].id;
+		}
+	}
+}
+
 // OPTIONS
 const letterColor = "#222222";
 const partOfWord = "#FF0000"
 const gridColor = '#BB8'; // #STARWARS :)
-const drawGrid = false;
-const drawBorder = false;
-const font = "Consolas"; // Arial, Consolas, Tahoma
-const letterCase = "upper";
 
 document.getElementById("gen").addEventListener('click', generateWordSearch);
 canvas.addEventListener('mousemove', hoverTile);
@@ -80,7 +107,7 @@ function drawLetters() {
 			else {
 				color = letterColor;
 			}
-			if(letterCase == "upper") {
+			if(upperCase) {
 				l = letter.str.toUpperCase()
 			}
 			else {
@@ -102,6 +129,14 @@ function hoverTile(event) {
 
 // Draws everything
 function draw(x, y) {
+	// Get updated options
+	getOptions();
+	
+	rows = width;
+	cols = width;
+	
+	cellSize = canvas.width / rows;
+	
 	// Clear the canvas
 	context.clearRect(0, 0, canvas.width, canvas.height);
 	
@@ -116,16 +151,11 @@ function draw(x, y) {
 
 function generateWordSearch() {
 	console.log("Generating Word Search")
-	
+
 	// Get the word search
 	grid = genSearch(getWords())
-	
-	width = document.getElementById('width').value
 
-	rows = width;
-	cols = width;
 	
-	cellSize = canvas.width / rows;
 	
 	draw();
 }

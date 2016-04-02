@@ -1,11 +1,13 @@
 $(document).ready(function(){
 	function addWordToList(word) {
-		if(!toBig(word)){
-			$('#word-box').append(
-				'<div class="wordboxitem""><li>' + word + '</li></div>'
-			);				
-			// Now clear the field
-			document.getElementById('word').value = "";
+		if(word.match(/^[a-zA-Z]+$/)) {
+			if(!toBig(word) && word != "") {
+				$('#word-box').append(
+					'<div class="wordboxitem""><li>' + word + '</li></div>'
+				);				
+				// Now clear the field
+				document.getElementById('word').value = "";
+			}
 		}
 	}
 	
@@ -23,7 +25,7 @@ $(document).ready(function(){
 		return big;
 	}
 	
-		var menu = $(".Menu div").height();
+	var menu = $(".Menu div").height();
 	var name = "";
 	
 	var id = "";
@@ -50,7 +52,6 @@ $(document).ready(function(){
 				queue: false,
 				duration: 250
 			});
-			
 			setTimeout(function(){
 				$(name).css("z-index", 0);
 			}, 250);

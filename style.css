@@ -2,18 +2,19 @@ html{
 	background: #f0f5f5;
 	margin: 0;
 	padding: 0;
-	overflow-y; hidden;
+	overflow-y: hidden;
+	font-family: Century Gothic, sans-serif;
 }
 p, h2{
 	text-decoration: none;
-	font-family: Century Gothic, sans-serif;
 }
 body{
 	margin: 0;
 	padding: 0;
 }
 #word-list {
-	width: 210px;
+	background-color: #737373;
+	width: 100%;
 	position: absolute;
 	margin: auto;
 	right: 0; bottom: 10px; left: 0;
@@ -22,7 +23,6 @@ body{
 #word-box {
 	height: 250px;
 	color: white;
-	border-top: 2px solid white;
 	padding: 0;
 	overflow-y: auto;
 }
@@ -31,7 +31,6 @@ body{
 	
 }
 #word-box div::before {
-	color: #ABCDEF;
 	font-size: 11px;
 	content: "remove";
 }
@@ -40,19 +39,21 @@ li {
 	padding-left: 20px;
 	display: inline-block;
 }
+#word {
+	height: 20px;
+	float: left;
+	border: 1px lightgrey solid;
+}
 #add {
-	float: right;
-	background-color: light blue;
-	border-color: #e60073;
-	border-radius: 2px;
-	color: #e60073;
+	height: 18px;
+	background-color: white;
+	margin-left: 0px;
+	border: 1px lightgrey solid;
+	border-left-style: none;
+	text-align: center;
 }
 #gen {
-	background: transparent;
-    border: none !important;
-	border-radius: 2px;
-
-	
+	width: 100%;
 }
 #word-search {
 	z-index: 0;
@@ -121,4 +122,11 @@ li {
 }
 .menuOption:hover{
 	cursor: pointer;
+}
+.icon{
+	height: 100%;
+	padding: auto;
+	margin: auto;
+	top: 0; right: 0; bottom: 0;
+	position:absolute;
 }

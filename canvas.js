@@ -166,7 +166,7 @@ function generateWordSearch() {
 	console.log("Generating Word Search")
 
 	// Get the word search
-	grid = genSearch(getWords())
+	grid = genSearch(getWords(), false)
 
 	
 	

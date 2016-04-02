@@ -54,7 +54,7 @@ $(document).ready(function(){
 				complete: welp()
 			});
 			function welp(){
-				$(name).delay(250).css("z-index", "0");
+				//$(name).delay(250).css("z-index", "0");
 			}
 			clickedFunc = true;
 		},
@@ -130,4 +130,29 @@ $(document).ready(function(){
 			addWordToList(word)
 		}
 	}
+	$("#printButton").click(function(){
+		window.print();
+	});
+	
+	document.getElementById('solve').addEventListener('click', function() {
+		// Generate info
+		var code = "";
+		
+		for(y=0; y<width; y++) {
+			for(x=0; x<width; x++) {
+				if(grid[x][y].isPartOfWord) {
+					code += grid[x][y].str + '1'
+				}
+				else {
+					code += grid[x][y].str + '0'
+				}
+			}
+		}
+		
+		code += ";" + width
+		
+		url = "file:///C:/Users/nzcra_000/Documents/teamgnutella/GitHub/teamgnutella.github.io/solve/index.html?" + code + ";" + getWords()
+		console.log(url)
+		window.location.href = url
+	});
 });

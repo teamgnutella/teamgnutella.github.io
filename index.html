@@ -2,6 +2,7 @@
 <html>
 	<head>
 		<link rel="stylesheet" href="style.css">
+		<link rel="stylesheet" type="text/css" media="print" href="print.css" />
 		<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js"></script>
 		<script src="script.js"></script>
 		<title>Word Search Generator</title>
@@ -17,8 +18,8 @@
 					<p class="1" style="background: #cc0066"><input type="checkbox" id='grid'/> Grid</p>
 					<p class="2" style="background: #b30059"><input type="checkbox" id='border'/> Border</p>
 					<p class="3" style="background: #99004d"><input type="checkbox" id="case"/> Uppercase</p>
-					<p class="3" style="background: #99004d"><input type="checkbox" id="highlight" checked='checked'/> Show Words</p>
-					<p class="4" style="background: #800040">Size <input id='width' value=10 type="number" min=1 max=20 step=1/></p>
+					<p class="3" style="background: #800040"><input type="checkbox" id="highlight" checked='checked'/> Show Words</p>
+					<p class="4" style="background: #660033">Size <input id='width' value=10 type="number" min=1 max=20 step=1/></p>
 				</div>	
 			</div>
 			<div class="menuOption" id="Fonts">
@@ -35,8 +36,7 @@
 					<a id="downLink" onclick="$('#downLink').attr('href', canvas.toDataURL());" download="Crossword.png" href="#" target="_blank">
 						<p class="1" style="background: #007a99" id="saveButton">Save</p>
 					</a>
-					<p class="1" style="background: #006680" id="upload">Upload</p>
-					<p class="2" style="background: #005266" id="printButton">Print</p>
+					<p class="2" style="background: #006680" id="printButton">Print</p>
 				</div>
 			</div>
 		
@@ -57,6 +57,9 @@
 				Sorry!
 			</canvas>
 		</div>
+		
+		<div id='solve'>Share This Puzzle</div>
+		
 		<script src="Generator.js"></script>
 		<script src="canvas.js"></script>
 	</body>

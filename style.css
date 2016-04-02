@@ -4,6 +4,7 @@ html{
 	padding: 0;
 	overflow-y: hidden;
 	font-family: Century Gothic, sans-serif;
+	overflow-x: hidden;
 }
 p, h2{
 	text-decoration: none;

@@ -27,7 +27,12 @@ body{
 }
 li {
 	list-style: none;
-	
+	padding-left: 20px;
+	display: inline-block;
+}
+.wordboxitem::before {
+	font-size: 10px;
+	content: "Remove";
 }
 #add {
 	float: right;

@@ -42,6 +42,17 @@ li {
 }
 #add {
 	float: right;
+	background-color: light blue;
+	border-color: #e60073;
+	border-radius: 2px;
+	color: #e60073;
+}
+#gen {
+	background: transparent;
+    border: none !important;
+	border-radius: 2px;
+
+	
 }
 #word-search {
 	width: 400px;
@@ -110,3 +121,4 @@ li {
 .menuOption:hover{
 	cursor: pointer;
 }
+text: click here!;

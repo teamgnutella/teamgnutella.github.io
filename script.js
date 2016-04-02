@@ -2,7 +2,17 @@ $(document).ready(function(){
 	var wordArray = [];
 	var setLength = 10;
 	$('#add').click(function(){
-		addWordToList()
+		var word = $('#word').val();
+				if(!toBig(word)){
+					wordArray.push(word);
+					$('#word-box').append(
+						'<li class="word">' + word + '</li>'
+					);
+					
+					// Now clear the field
+					document.getElementById('word').value = "";
+					
+				}
 	});
 	function toBig(word){
 		var big = true;
@@ -48,7 +58,6 @@ $(document).ready(function(){
 	textField.addEventListener('keyup', addWordToList)
 	
 	function addWordToList(event) {
-		if(event) {
 			if(event.keyCode == 13){
 				var word = $('#word').val();
 				if(!toBig(word)){
@@ -57,19 +66,10 @@ $(document).ready(function(){
 						'<li class="word">' + word + '</li>'
 					);
 					
+					// Now clear the field
+					document.getElementById('word').value = "";
+					
 				}
 			}
 		}
-		else {
-			var word = $('#word').val();
-				if(!toBig(word)){
-					wordArray.push(word);
-					$('#word-box').append(
-						'<li class="word">' + word + '</li>'
-					);
-					
-				}
-		}
-		
-	}
 });

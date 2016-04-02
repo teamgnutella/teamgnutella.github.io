@@ -3,7 +3,7 @@ function Cell(str, bool) {
 	this.isPartOfWord = bool;
 }
 var wordsInSearch;
-function genSearch(wordList, wantWords) {
+function genSearch(wordList) {
 	var sideLength = document.getElementById("width").value;
 	var list = [];
 	for (var i = 0; i < sideLength; i++) {

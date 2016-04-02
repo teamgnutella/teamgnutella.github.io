@@ -2,6 +2,7 @@ html{
 	background: #f0f5f5;
 	margin: 0;
 	padding: 0;
+	overflow-y; hidden;
 }
 p, h2{
 	text-decoration: none;
@@ -14,16 +15,16 @@ body{
 #word-list {
 	width: 210px;
 	position: absolute;
-	top: 0; bottom: 0;
 	margin: auto;
-	padding: auto;
+	right: 0; bottom: 10px; left: 0;
+	z-index: 0;
 }
 #word-box {
-	border: solid black 1px;
-	margin: 0;
+	height: 250px;
+	color: white;
+	border-top: 2px solid white;
 	padding: 0;
 	overflow-y: auto;
-	height: 250px;
 }
 #word-box div{
 	border-bottom: solid 1px black;
@@ -41,8 +42,20 @@ li {
 }
 #add {
 	float: right;
+	background-color: light blue;
+	border-color: #e60073;
+	border-radius: 2px;
+	color: #e60073;
+}
+#gen {
+	background: transparent;
+    border: none !important;
+	border-radius: 2px;
+
+	
 }
 #word-search {
+	z-index: 0;
 	width: 400px;
 	height: 400px;
 	position: absolute;
@@ -50,33 +63,62 @@ li {
 	margin: auto;
 	padding: auto;
 }
+#slideMenu{
+	position: absolute;
+	top: 5px; left: 15px;
+	height: 25px;
+	color: #737373;
+	font-size: 50px;
+}
+#slideMenu p {
+	margin: 0;
+	text-align: center;
+	z-index: -10;
+}
+#slideMenu:hover{
+	cursor: pointer;
+}
+.Menu{
+	width: 250px;
+	position: absolute;
+	left: -250px; top: 0;
+	height: 100%;
+	background: #737373;
+	float: left;
+}
 .menuOption{
 	color: white;
-	width: 33.33%;
+	width: 100%;
 	text-align: center;
-	float: left;
-	z-index: 0;
-	background: #57a7a7;
 }
 .menuOption h2{
-	font-size: small;
-	padding: 10px 0 10px 0;
-	margin: 8px 0 8px 0;
+	font-size: large;
+	text-align: center;
+	padding: 20px 0 20px 0;
+	margin: 0;
+	position: relative;
+	z-index: 2;
 }
 #option{
-	position: absolute;
-	width: 33.33%;
+	width: 100%;
 	z-index: -1;
 	top: 0;
 	margin: 0;
-	padding: 18px 0 18px 0;
 	color:white;
 	font-weight: bold;
-	background: #334d4d;
+	position: absolute;
+	width: 250px;
+	background: #737373;
 }
-.Menu div:hover{
-	cursor: pointer;
-}
-#check{
+#option p{
+	padding: 20px 0 20px 0;
 	margin: 0;
+	z-index: 0;
+}
+.menuOption a p input{
+	margin: 0;
+	border: 0;
+}
+.menuOption:hover{
+	cursor: pointer;
 }

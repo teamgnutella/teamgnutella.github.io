@@ -1,58 +1,136 @@
-// GLOBALS
-var wordArray = [];
-
 $(document).ready(function(){
-	var setLength = 10;
+	function addWordToList(word) {
+		if(!toBig(word)){
+			$('#word-box').append(
+				'<div class="wordboxitem""><li>' + word + '</li></div>'
+			);				
+			// Now clear the field
+			document.getElementById('word').value = "";
+		}
+	}
+	
+	var wordArray = [];
 	$('#add').click(function(){
 		var word = $('#word').val();
-		if(!toBig(word)){
-			wordArray.push(word);
-			$('#word-box').append(
-				'<li class="word">' + word + '</li>'
-			);
-			console.log(wordArray);
-			console.log("Good Size");
-		}
-		
+		addWordToList(word);
 	});
 	function toBig(word){
+		var setLength = document.getElementById('width').value;
 		var big = true;
-		if(word.length < setLength){
+		if(word.length <= setLength){
 			big = false;
 		}
 		return big;
 	}
 	
-	var menu = $(".Menu div").height();
+		var menu = $(".Menu div").height();
 	var name = "";
-	var temp = menu;
-	$(".Menu div").hover(
+	
+	var id = "";
+	var clickedFunc = false;
+	var top = "";
+	
+	$("#Style #option").css("top", menu);
+	$("#Fonts #option").css("top", menu*2);
+	$("#Translate #option").css("top", menu*3);
+
+	$(".menuOption").hover(
 		function(){
-			for(var i = 1; i < $(this).children().size(); i++){
-				name = "#" + $(this).attr("id") + " ." + i;
-				$(name).animate({
-					"top": menu
-				},{
-					queue: false,
-					duration: 250
-				});
-				
-				menu += temp;
-			}
-			menu = temp;
+			id = $(this).attr("id");
+			name = "#" + id + " #option"
+			$(this).animate({
+				'width' : 500
+			},{
+				queue: false,
+				duration: 250
+			});
+			$(name).animate({
+				'margin-left' : 250
+			},{
+				queue: false,
+				duration: 250
+			});
+			
+			setTimeout(function(){
+				$(name).css("z-index", 0);
+			}, 250);
+			
+			clickedFunc = true;
 		},
 		function(){
-			for(var i = $(this).children().size() - 1; i > 0; i--){
-				name = "#" + $(this).attr("id") + " ." + i;
-				$(name).animate({
-					"top": 0
+			id = $(this).attr("id");
+			name = "#" + id + " #option"
+			$(name).css("z-index", -1);
+			$(name).animate({
+				'margin-left' : 0
+			},{
+				queue: false,
+				duration: 250
+			});
+			$(this).animate({
+				'width' : 250
+			},{
+				queue: false,
+				duration: 250
+			});
+			clickedFunc = false;
+		}
+	);
+	var clicked = false;
+	$("#slideMenu").click(function(){
+		if(!clicked){
+			$(".Menu").animate({
+				"left": 0
+			},{
+				queue: false,
+				duration: 250
+			});
+			$(this).animate({
+				"left": 265
+			},{
+				queue: false,
+				duration: 250
+			});
+			clicked = true;
+		}
+		else{
+			for(var i = 1; i < $(".Menu").children().size(); i++){	
+				var cool = ".opt" + i;
+				$(cool).animate({
+					"margin-left": 0
 				},{
 					queue: false,
 					duration: 250
 				});
-				name = "";
 			}
-			menu = temp;
+			$(".Menu").animate({
+				"left": -250
+			},{
+				queue: false,
+				duration: 250
+			});
+			$(this).animate({
+				"left": 15
+			},{
+				queue: false,
+				duration: 250
+			});
+			clicked = false;
 		}
-	);
+		
+	});
+	textField = document.getElementById('word')
+	textField.addEventListener('keyup', addWordEnter)
+	
+	$( "#word-box" ).on("click", 'div', function() {
+		$(this).remove();
+	});
+	
+	
+	function addWordEnter(event) {
+		if(event.keyCode == 13){
+			var word = $('#word').val();
+			addWordToList(word)
+		}
+	}
 });

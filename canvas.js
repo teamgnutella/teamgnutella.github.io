@@ -2,15 +2,30 @@ canvas = document.getElementById('canvas');
 context = canvas.getContext("2d");
 
 // OPTIONS
-const letterColor = "000";
+const letterColor = "#222222";
+const partOfWord = "#FF0000"
 const gridColor = '#BB8'; // #STARWARS :)
-const drawGrid = true;
-const drawBorder = true;
+const drawGrid = false;
+const drawBorder = false;
+const font = "Consolas"; // Arial, Consolas, Tahoma
+const letterCase = "upper";
 
 document.getElementById("gen").addEventListener('click', generateWordSearch);
+canvas.addEventListener('mousemove', hoverTile);
 
+// Parses the word box for the input words
 function getWords() {
-	return wordArray;
+	var words = [];
+	var wordBox = document.getElementById('word-box').childNodes;
+	
+	for(var i = 1; i < wordBox.length; i++) {
+		var word = wordBox[i].textContent;
+		if(word !== "") {
+			words.push(word)
+		}
+		
+	}
+	return words;
 }
 
 function setColor(color) {
@@ -41,14 +56,13 @@ function drawGridLines(color) {
 function drawLetter(letter, x, y, color) {
 	letterHeight = 20
 	
-	setColor(color)
-	
 	if(letter.length > 1) {
 		letter = letter[0];
 	}
-	context.font = letterHeight + "px Consolas";
+	context.font = letterHeight + "px " + font;
 	context.textAlign = 'center';
 	context.textBaseline = 'middle';
+	setColor(color)
 	context.fillText(letter, x, y);
 }
 
@@ -58,13 +72,54 @@ function drawLetters() {
 	
 	for(y = 0; y < rows; y++) {
 		for(x = 0; x < cols; x++) {
-			letter = wordArray[0][0]
-			drawLetter(letter, (x * cellSize) + cellSize / 2, y * cellSize + cellSize / 2, "#000")
+			letter = grid[x][y]
+			
+			if(letter.isPartOfWord) {
+				color = partOfWord;
+			}
+			else {
+				color = letterColor;
+			}
+			if(letterCase == "upper") {
+				l = letter.str.toUpperCase()
+			}
+			else {
+				l = letter.str.toLowerCase()
+			}
+			
+			drawLetter(l, (x * cellSize) + cellSize / 2, y * cellSize + cellSize / 2, color)
 		}
 	}
 }
 
+function hoverTile(event) {
+	rect = canvas.getBoundingClientRect()
+    x = Math.floor((event.clientX - rect.left) / cellSize)
+    y = Math.floor((event.clientY - rect.top) / cellSize)
+	
+	draw(x, y);
+}
+
+// Draws everything
+function draw(x, y) {
+	// Clear the canvas
+	context.clearRect(0, 0, canvas.width, canvas.height);
+	
+	// Draw grid lines if necessary
+	if(drawGrid) { drawGridLines(gridColor) }
+	if(drawBorder) { drawBorderLines(gridColor) }
+	
+	drawLetters();
+	context.fillStyle = 'rgba(10, 10, 10, 0.1)';
+	context.fillRect(x * cellSize, y * cellSize, cellSize, cellSize)
+}
+
 function generateWordSearch() {
+	console.log("Generating Word Search")
+	
+	// Get the word search
+	grid = genSearch(getWords())
+	
 	width = document.getElementById('width').value
 
 	rows = width;
@@ -72,14 +127,7 @@ function generateWordSearch() {
 	
 	cellSize = canvas.width / rows;
 	
-	// Clear the canvas
-	context.clearRect(0, 0, canvas.width, canvas.height);
-	
-	// Draw grid if necessary
-	if(drawGrid) { drawGridLines(gridColor) }
-	if(drawBorder) { drawBorderLines(gridColor) }
-	
-	drawLetters();
+	draw();
 }
 
 generateWordSearch()

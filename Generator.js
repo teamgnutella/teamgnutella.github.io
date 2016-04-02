@@ -1,5 +1,3 @@
-//var sideLength = document.getElementById("width").value;
-var sideLength = 10;
 function Cell(str, bool) {
 	this.str = str;
 	this.isPartOfWord = bool;
@@ -13,6 +11,7 @@ function genSearch(wordList) {
 	//	}
 	//}
 	//Load "list" with random characters
+	var sideLength = document.getElementById("width").value;
 	var list = [];
 	for (var i = 0; i < sideLength; i++) {
 		list[i] = [];

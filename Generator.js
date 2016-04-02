@@ -23,6 +23,7 @@ function genSearch(wordList) {
 		numConfigTries++;
 		var loopsWithoutChange = 0;
 		while (wordList.length > 0 && loopsWithoutChange < 5) {
+			wordsInSearch = [];
 			if (wordList[0].length > sideLength) {
 				wordList.shift();
 			}

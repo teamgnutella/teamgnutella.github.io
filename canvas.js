@@ -4,6 +4,7 @@ context = canvas.getContext("2d");
 var drawGrid = false;
 var drawBorder = false;
 var upperCase = false;
+var highlight = false;
 var width = 10;
 var font = 'consolas';
 
@@ -11,14 +12,21 @@ var font = 'consolas';
 document.getElementById('grid').addEventListener('click', draw)
 document.getElementById('border').addEventListener('click', draw)
 document.getElementById('case').addEventListener('click', draw)
+document.getElementById('highlight').addEventListener('click', draw)
 document.getElementById('width').addEventListener('change', generateWordSearch)
-//document.getElementById('font').addEventListener('change', draw)
+
+// Add to radio
+radios = document.getElementsByName('font')
+for(i = 0; i < radios.length; i++) {
+	console.log(radios[i].addEventListener('click', draw))
+}
 
 // OPTIONS
 function getOptions() {
 	drawGrid = document.getElementById('grid').checked;
 	drawBorder = document.getElementById('border').checked;
 	upperCase = document.getElementById('case').checked;
+	highlight = document.getElementById('highlight').checked;
 	width = document.getElementById('width').value
 	font = getCheckedRadio('font');
 }
@@ -81,7 +89,12 @@ function drawGridLines(color) {
 }
 
 function drawLetter(letter, x, y, color) {
-	letterHeight = 20
+	if(width > 15) {
+		letterHeight = 16;
+	}
+	else {
+		letterHeight = 20
+	}
 	
 	if(letter.length > 1) {
 		letter = letter[0];
@@ -102,7 +115,7 @@ function drawLetters() {
 			letter = grid[x][y]
 			
 			if(letter.isPartOfWord) {
-				color = partOfWord;
+				if(highlight) { color = partOfWord }
 			}
 			else {
 				color = letterColor;
